@@ -9,12 +9,6 @@ def hello_world():
     return render_template(
         "template.html",
        
-    )
-
-@app.route("/hello")
-def hello_user(username):
-    return render_template(
-        "template.html",
         
         
     )
@@ -43,5 +37,15 @@ def search():
     q = request.args.get("q")
     suche = User.search(q)
     return render_template("search.html", suche=users)
+
+@app.route("/hello/<string:username>")
+def hello_user(username):
+    u = user.User.from_db(username)
+    return  render_template(
+        "user.html",
+        title = "Hello",
+        name = u.firstname + u.lastname,
+        verein = u.lieblingsverein
+        )
     
     
