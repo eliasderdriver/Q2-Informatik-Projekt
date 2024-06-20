@@ -47,5 +47,19 @@ def hello_user(username):
         name = u.firstname + u.lastname,
         verein = u.lieblingsverein
         )
+
+@app.route("/vereine")
+def vereine(vereinsname):
+    v = verein.Verein.from_db(vereinsname)
+    return  render_template(
+        "vereine.html",
+        title = "Hello",
+        vereinsname = v.vereinsname,
+        mw = v.marktwert,
+        jahr = v.gründungsjahr,
+        bild = v.wappen
+        
+       
+       )
     
     
